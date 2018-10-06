@@ -27,5 +27,5 @@ int main(int argc, char **argv) {
 
     int n = atoi(argv[1]);
     
-    printf("the value after %d iterations: %f\n", n, calculate_e(n));
+    printf("the value after %d iterations: %.12f\n", n, calculate_e(n));
 }
