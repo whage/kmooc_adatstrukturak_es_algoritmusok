@@ -40,9 +40,9 @@ pattern exercise_1() {
             p.grid[i][s] = ' ';
         }
 
-        for (int j = (p.width - i); j >= 0; j--) {
+        for (int j = space_count; j < p.width; j++) {
             // convert int to corresponding numeric character
-            p.grid[i][j] = j + 49;
+            p.grid[i][j] = j - space_count + 49;
         }
     }
 
