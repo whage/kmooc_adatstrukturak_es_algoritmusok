@@ -55,6 +55,22 @@ grid exercise_2(grid g) {
     return g;
 }
 
+grid exercise_3(grid g) {
+    for (int i = 0; i < g.height; i++) {
+        int space_count = g.width - (i + 1);
+
+        for (int s = 0; s < space_count; s++) {
+            g.cells[i][s] = ' ';
+        }
+
+        for (int j = space_count; j < g.width; j++) {
+            g.cells[i][j] = g.width - j + 48;
+        }
+    }
+
+    return g;
+}
+
 grid allocate_grid(int width, int height) {
     grid g;
     g.width = g.height = 8;
@@ -72,4 +88,5 @@ grid allocate_grid(int width, int height) {
 int main() {
     print_grid(exercise_1(allocate_grid(8, 8)));
     print_grid(exercise_2(allocate_grid(8, 8)));
+    print_grid(exercise_3(allocate_grid(8, 8)));
 }
