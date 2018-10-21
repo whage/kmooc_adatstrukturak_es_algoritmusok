@@ -96,17 +96,18 @@ grid exercise_4(grid g) {
     return g;
 }
 
+// same as exercise_4, but fills the grid from the bottom
 grid exercise_5(grid g) {
     int space_count = 7;
    
     // this time, we fill it up column-by-column (seems simpler)
     for (int i = 0; i < g.width; i++) {
-        for (int j = i + 1; j > 0; j--) {
-            g.cells[j][i] = j;
-        }
-        
-        for (int s = 0; s < space_count; s++) {
+        for (int s = space_count; s > 0; s--) {
             g.cells[s][i] = ' ';
+        }
+
+        for (int j = g.height - space_count - 1, num = '1'; j >= 0; j--, num++) {
+            g.cells[j][i] = num;
         }
 
         // if we are in the first 7 columns
@@ -126,7 +127,7 @@ grid allocate_grid(int width, int height) {
     g.width = width;
     g.height = height;
 
-    // allocate memory for grid: 8 * 8 * sizeof(char)
+    // allocate memory for grid: 8 * 8 * sizeof(char*)
     g.cells = (char**)malloc(sizeof(char*) * g.width);
 
     for (int i = 0; i < g.height; i++) {
