@@ -130,10 +130,11 @@ grid allocate_grid(int width, int height) {
     g.width = width;
     g.height = height;
 
-    // allocate memory for grid: 8 * 8 * sizeof(char*)
+    // allocate memory for first dimension of grid
     g.cells = (char**)malloc(sizeof(char*) * g.width);
 
     for (int i = 0; i < g.height; i++) {
+        // allocate memory for second dimension
         g.cells[i] = (char*)malloc(sizeof(char*));
     }
 
