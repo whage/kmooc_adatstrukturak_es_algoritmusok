@@ -20,6 +20,9 @@ void print_grid(grid g) {
         // add new line character
         cout << endl;
     }
+    
+    // add extra new line
+    cout << endl;
 }
 
 grid exercise_1(grid g) {
@@ -138,9 +141,14 @@ grid allocate_grid(int width, int height) {
 }
 
 int main() {
+    cout << "1:" << endl;
     print_grid(exercise_1(allocate_grid(8, 8)));
+    cout << "2:" << endl;
     print_grid(exercise_2(allocate_grid(8, 8)));
+    cout << "3:" << endl;
     print_grid(exercise_3(allocate_grid(8, 8)));
+    cout << "4:" << endl;
     print_grid(exercise_4(allocate_grid(15, 8)));
+    cout << "5:" << endl;
     print_grid(exercise_5(allocate_grid(15, 8)));
 }
