@@ -71,9 +71,36 @@ grid exercise_3(grid g) {
     return g;
 }
 
+// TODO
+grid exercise_4(grid g) {
+    int space_count = 7;
+    cout << "g.width " << g.width << endl;
+    for (int i = 0; i < g.width; i++) {
+        cout << "space count " << space_count << endl;
+        for (int s = 0; s < space_count; s++) {
+            g.cells[i][s] = ' ';
+        }
+
+        for (int j = space_count; j < g.height; j++) {
+            g.cells[i][j] = 'a'; // TODO
+        }
+
+        // if we are in the first 7 columns
+        if (i < 7) {
+            space_count -= 1;
+        // from 8th column
+        } else {
+            space_count += 1;
+        }
+    }
+
+    return g;
+}
+
 grid allocate_grid(int width, int height) {
     grid g;
-    g.width = g.height = 8;
+    g.width = width;
+    g.height = height;
 
     // allocate memory for grid: 8 * 8 * sizeof(char)
     g.cells = (char**)malloc(sizeof(char*) * g.width);
@@ -89,4 +116,5 @@ int main() {
     print_grid(exercise_1(allocate_grid(8, 8)));
     print_grid(exercise_2(allocate_grid(8, 8)));
     print_grid(exercise_3(allocate_grid(8, 8)));
+    print_grid(exercise_4(allocate_grid(15, 8)));
 }
