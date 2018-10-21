@@ -102,7 +102,7 @@ grid exercise_5(grid g) {
    
     // this time, we fill it up column-by-column (seems simpler)
     for (int i = 0; i < g.width; i++) {
-        for (int s = space_count; s > 0; s--) {
+        for (int s = g.height - 1; s >= g.height - space_count; s--) {
             g.cells[s][i] = ' ';
         }
 
