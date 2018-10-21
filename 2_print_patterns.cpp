@@ -96,6 +96,31 @@ grid exercise_4(grid g) {
     return g;
 }
 
+grid exercise_5(grid g) {
+    int space_count = 7;
+   
+    // this time, we fill it up column-by-column (seems simpler)
+    for (int i = 0; i < g.width; i++) {
+        for (int j = i + 1; j > 0; j--) {
+            g.cells[j][i] = j;
+        }
+        
+        for (int s = 0; s < space_count; s++) {
+            g.cells[s][i] = ' ';
+        }
+
+        // if we are in the first 7 columns
+        if (i < 7) {
+            space_count -= 1;
+        // from 8th column
+        } else {
+            space_count += 1;
+        }
+    }
+
+    return g;
+}
+
 grid allocate_grid(int width, int height) {
     grid g;
     g.width = width;
@@ -116,4 +141,5 @@ int main() {
     print_grid(exercise_2(allocate_grid(8, 8)));
     print_grid(exercise_3(allocate_grid(8, 8)));
     print_grid(exercise_4(allocate_grid(15, 8)));
+    print_grid(exercise_5(allocate_grid(15, 8)));
 }
