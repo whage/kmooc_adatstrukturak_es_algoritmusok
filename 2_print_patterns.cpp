@@ -71,18 +71,17 @@ grid exercise_3(grid g) {
     return g;
 }
 
-// TODO
 grid exercise_4(grid g) {
     int space_count = 7;
-    cout << "g.width " << g.width << endl;
+   
+    // this time, we fill it up column-by-column (seems simpler)
     for (int i = 0; i < g.width; i++) {
-        cout << "space count " << space_count << endl;
         for (int s = 0; s < space_count; s++) {
-            g.cells[i][s] = ' ';
+            g.cells[s][i] = ' ';
         }
 
-        for (int j = space_count; j < g.height; j++) {
-            g.cells[i][j] = 'a'; // TODO
+        for (int j = space_count, num = '1'; j < g.height; j++, num++) {
+            g.cells[j][i] = num;
         }
 
         // if we are in the first 7 columns
