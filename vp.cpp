@@ -8,7 +8,7 @@ typedef struct entry {
     struct entry* next;
 } entry;
 
-void print_list(entry *list, int length) {
+void print_list(entry *list) {
     entry *p = list;
 
     while (p != NULL) {
@@ -28,11 +28,11 @@ void filter_by_year(entry *list, int year) {
     } while (p->next != NULL);
 }
 
-void delete_by_year(entry *list, int length) {
+void delete_by_year(entry *list) {
     // TODO
 }
 
-void print_reverse(entry *list, int length) {
+void print_reverse(entry *list) {
     // TODO
 }
 
@@ -88,12 +88,18 @@ int main() {
         previous = NULL;
     }
 
-    print_list(list_head, SIZE);
+    print_list(list_head);
 
     int year_filter;
 
     std::cout << "filter by which year: ";
     std::cin >> year_filter;
-
+    
+    // test filtering
     filter_by_year(list_head, year_filter);
+
+    // test reverse listing
+    print_reverse(list_head);
+
+
 }
