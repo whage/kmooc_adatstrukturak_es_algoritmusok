@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 
 typedef struct entry {
     int year;
@@ -6,6 +7,27 @@ typedef struct entry {
     double temp;
     struct entry* next;
 } entry;
+
+void print_list(entry *list, int length) {
+    entry *p = list;
+
+    while (p != NULL) {
+        std::cout << p->year << "." << p->month << ": " << p->temp << "\n";
+        p = p->next;
+    }
+}
+
+void filter_by_year(entry *list, int length) {
+    // TODO
+}
+
+void delete_by_year(entry *list, int length) {
+    // TODO
+}
+
+void print_reverse(entry *list, int length) {
+    // TODO
+}
 
 int main() {
     const int SIZE = 24;
@@ -16,9 +38,53 @@ int main() {
 
     double temp[SIZE]={-10.4,-2.8, -5.1,-2.1, 3.5 , 30.9, 35.7, -7.3, 20.3, 34.2, 6.2, 15.4,10.13, 1.56,-12.7,15.8, 16.2, 0.21, 9.9, 4.4, -3.3, 4.7, 0, 20.4 };
 
-    struct entry* list; // = new ....
+    // create list head pointer and allocate space
+    entry *list_head = new entry;
 
-    for (int i = 0; i < SIZE; i++) {
+    // initialize first entry
+    list_head->year  = year[0];
+    list_head->month = month[0];
+    list_head->temp  = temp[0];
 
+    // initialize walker pointer
+    entry *walker = list_head;
+    entry *previous = NULL;
+
+    // create and insert new entries
+    for (int i = 1; i < SIZE; i++) {
+        entry *new_entry = new entry;
+        
+        new_entry->year  = year[i];
+        new_entry->month = month[i];
+        new_entry->temp  = temp[i];
+
+        while (walker->next != NULL && walker->year <= new_entry->year) {
+            previous = walker;
+            walker = walker->next;
+        }
+
+        // check if walker has a next element, link it after new_entry if it does
+        //if (walker->next != NULL) {
+        //    new_entry->next = walker->next;
+        //}
+        
+        if (previous != NULL) {
+            new_entry->next = previous->next;
+            previous->next = new_entry;
+        } else {
+            new_entry->next = list_head;
+            list_head = new_entry;
+        }
+
+        //new_entry->next = walker;
+
+        // insert new_entry after walker
+        //walker->next = new_entry;
+        
+        // reset
+        walker = list_head;
+        previous = NULL;
     }
+
+    print_list(list_head, SIZE);
 }
