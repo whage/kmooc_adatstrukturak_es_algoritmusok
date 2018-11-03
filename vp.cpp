@@ -63,24 +63,19 @@ int main() {
             walker = walker->next;
         }
 
-        // check if walker has a next element, link it after new_entry if it does
-        //if (walker->next != NULL) {
-        //    new_entry->next = walker->next;
-        //}
-        
-        if (previous != NULL) {
-            new_entry->next = previous->next;
-            previous->next = new_entry;
+        if (new_entry->year > walker->year) {
+            walker->next = new_entry;
         } else {
-            new_entry->next = list_head;
-            list_head = new_entry;
+            if (previous != NULL) {
+                new_entry->next = previous->next;
+                previous->next = new_entry;
+            } else {
+                new_entry->next = list_head;
+                list_head = new_entry;
+            }
         }
 
-        //new_entry->next = walker;
 
-        // insert new_entry after walker
-        //walker->next = new_entry;
-        
         // reset
         walker = list_head;
         previous = NULL;
