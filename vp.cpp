@@ -28,12 +28,43 @@ void filter_by_year(entry *list, int year) {
     } while (p->next != NULL);
 }
 
-void delete_by_year(entry *list) {
-    // TODO
+entry *delete_by_year(entry *list, int year) {
+    entry *p = list;
+    entry *head = list;
+    entry *prev = NULL;
+
+    while (p != NULL) {
+        if (p->year == year) {
+            if (prev != NULL) {
+                prev->next = p->next;
+            } else {
+                head = p->next;
+            }
+        } else {
+            prev = p;
+        }
+
+        p = p->next;
+    }
+
+    return head;
 }
 
-void print_reverse(entry *list) {
-    // TODO
+entry *reverse(entry *list) {
+    entry *prev = NULL;
+    entry *next = NULL;
+    entry *current = list;
+    
+    while (current != NULL) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+
+    list = prev;
+
+    return list;
 }
 
 int main() {
@@ -99,7 +130,15 @@ int main() {
     filter_by_year(list_head, year_filter);
 
     // test reverse listing
-    print_reverse(list_head);
+    list_head = reverse(list_head);
+    std::cout << "in reverse order:\n";
+    print_list(list_head);
 
+    // test removing entries with given date
+    int year_to_delete;
+    std::cout << "delete which years: ";
+    std::cin >> year_to_delete;
 
+    list_head = delete_by_year(list_head, year_to_delete);
+    print_list(list_head);
 }
