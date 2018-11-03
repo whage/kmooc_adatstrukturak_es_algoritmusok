@@ -17,8 +17,15 @@ void print_list(entry *list, int length) {
     }
 }
 
-void filter_by_year(entry *list, int length) {
-    // TODO
+void filter_by_year(entry *list, int year) {
+    entry *p = list;
+
+    do {
+        if (p->year == year) {
+            std::cout << p->year << "." << p->month << ": " << p->temp << "\n";
+        }
+        p = p->next;
+    } while (p->next != NULL);
 }
 
 void delete_by_year(entry *list, int length) {
@@ -82,4 +89,11 @@ int main() {
     }
 
     print_list(list_head, SIZE);
+
+    int year_filter;
+
+    std::cout << "filter by which year: ";
+    std::cin >> year_filter;
+
+    filter_by_year(list_head, year_filter);
 }
