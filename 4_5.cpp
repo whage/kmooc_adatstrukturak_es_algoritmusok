@@ -2,21 +2,21 @@
 
 #include "4.hpp"
 
-int get_lowest_under_antidiagonal(int **matrix, int n) {
-    // set lowest to top right element below the antidiagonal
-    int lowest_i = 1;
-    int lowest_j = n - 1;
+int get_smallest_under_antidiagonal(int **matrix, int n) {
+    // set smallest to top right element below the antidiagonal
+    int smallest_i = 1;
+    int smallest_j = n - 1;
 
     for (int i = 0; i < n; i++) {
         for (int j = n - 1; j + i > n - 1 ; j--) {
-            if (matrix[i][j] < matrix[lowest_i][lowest_j]) {
-                lowest_i = i;
-                lowest_j = j;
+            if (matrix[i][j] < matrix[smallest_i][smallest_j]) {
+                smallest_i = i;
+                smallest_j = j;
             }
         }
     }
 
-    return matrix[lowest_i][lowest_j];
+    return matrix[smallest_i][smallest_j];
 }
 
 int main() { 
@@ -29,5 +29,5 @@ int main() {
 
     fill_matrix(matrix, n, n);
 
-    std::cout << get_lowest_under_antidiagonal(matrix, n);
+    std::cout << get_smallest_under_antidiagonal(matrix, n);
 }
